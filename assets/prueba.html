@@ -1,0 +1,3486 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8" />
+   <title>SW500-Aurora IoT</title>
+   <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+   <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+   <link rel="apple-touch-icon" href="assets/images/logo.png">
+   <meta name="apple-mobile-web-app-title" content="Flatkit">
+   <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+   <meta name="mobile-web-app-capable" content="yes">
+   <link rel="shortcut icon" sizes="196x196" href="assets/images/logo.png">
+ <link rel="stylesheet" href="css/operativa.css" type="text/css">
+   <!-- style -->
+
+
+
+   <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" type="text/css">
+
+   <link rel="stylesheet" href="assets/animate.css/animate.min.css" type="text/css" />
+   <link rel="stylesheet" href="assets/glyphicons/glyphicons.css" type="text/css" />
+   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+   <link rel="stylesheet" href="assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+   <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+   <!-- build:css assets/styles/app.min.css -->
+   <link rel="stylesheet" href="assets/styles/app.css" type="text/css" />
+   <!-- endbuild -->
+   <link rel="stylesheet" href="assets/styles/font.css" type="text/css" />
+
+
+
+
+   <script
+     src="https://code.jquery.com/jquery-3.5.1.js"
+     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+     crossorigin="anonymous"></script>
+
+
+
+     <style type="text/css">
+	.arts{
+		background-color: white;
+
+		width:100%;
+	}
+	.arts{
+		display:block;
+	}
+	.arts:hover {
+		background-color: gray;
+		cursor:default;
+	}
+	</style>
+  <script type="text/javascript">
+//Recoger elemento arrastrable//
+function evdragstart(ev,el) { //ev= el evento, el=elemento arrastrado.
+    Articulos=el.parentNode; //guardamos el elemento padre del elemento en una variable.
+    ev.dataTransfer.setData("text",ev.target.id);	//guardamos datos del elemento.
+}
+//mientras se arrastra:
+function evdragover (ev) { //ev=el evento.
+    ev.preventDefault(); //quitar comportamiento por defecto.
+}
+//Al soltar el elemento arrastrado
+function evdrop(ev,el) { //ev=el evento; el=receptor de soltado
+    ev.stopPropagation(); //impedir otras acciones
+    ev.preventDefault(); //quitar comportamiento por defecto
+    var data=ev.dataTransfer.getData("text"); //recogemos datos del elemento
+    mielem=ev.target.appendChild(document.getElementById(data)); //obtenemos el elemento arrastrado
+    cont1.appendChild(mielem); //ponemos el elemento arrastrado en el mismo sitio donde estaba.
+    mielem2=mielem.cloneNode(true); //creamos una copia del elemento arrastrado.
+    mielem2.setAttribute("draggable","false"); //impedimos que el nuevo elemento pueda volver a arrastrarse
+    el.appendChild(mielem2); //colocamos la copia en el receptor de soltado
+}
+</script>
+  <style type="text/css">
+
+  /*estilo de contenedores*/
+  #cont0 { width: 80%; height: 300px;  }
+  #cont1 { width: 50%; height: 300px; background-color:gray; float: left; overflow: auto; }
+  #cont2 { width: 50%; height: 300px; background-color:gray; float: left; overflow: auto; }
+    #cont3 { width: 50%; height: 300px; background-color:red; float: left; overflow: auto; }
+  </style>
+ </head>
+ <body>
+   <!--  /* MENSAJES DE ERRROR / EXTIO*/ -->
+
+
+   <div class="app" id="app">
+
+     <!-- ############ LAYOUT START-->
+
+     <!-- BARRA IZQUIERDA -->
+     <!-- aside -->
+     <div id="aside" class="app-aside modal nav-dropdown">
+       <!-- fluid app aside -->
+       <div class="left navside dark dk" data-layout="column">
+         <div class="navbar no-radius">
+           <!-- brand -->
+           <a class="navbar-brand">
+             <img src="assets/images/logo.png" alt="."  >
+             <span class="hidden-folded inline">Aurora IoT</span>
+           </a>
+           <!-- / brand -->
+         </div>
+         <div class="hide-scroll" data-flex>
+           <nav class="scroll nav-light">
+
+             <ul class="nav" ui-nav>
+               <li class="nav-header hidden-folded">
+                 <small class="text-muted">Menu</small>
+               </li>
+
+               <li>
+                 <a href="dashboard.php" >
+                   <span class="nav-icon">
+                     <i class="fa fa-building-o"></i>
+                   </span>
+                   <span class="nav-text">Principal</span>
+                 </a>
+               </li>
+               <li>
+                 <a>
+                   <span class="nav-caret">
+                     <i class="fa fa-caret-down"></i>
+                   </span>
+                   <span class="nav-icon">
+                     <i class="material-icons">&#xe8f0;
+                       <span ui-include="'assets/images/grupo.svg'"></span>
+                     </i>
+                   </span>
+                   <span class="nav-text">Empleados</span>
+                 </a>
+                 <ul class="nav-sub">
+                   <li>
+                     <a href="users.php" >
+                       <span class="nav-text">Nuevo</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="asides.html" >
+                       <span class="nav-text">Area</span>
+                     </a>
+                   </li>
+                 </ul>
+               </li>
+               <li>
+                 <a>
+                   <span class="nav-caret">
+                     <i class="fa fa-caret-down"></i>
+                   </span>
+                   <span class="nav-icon">
+                     <i class="material-icons">&#xe8f0;
+                       <span ui-include="'assets/images/reportes.svg'"></span>
+                     </i>
+                   </span>
+                   <span class="nav-text">Reportes</span>
+                 </a>
+                 <ul class="nav-sub">
+                   <li>
+                     <a href="users.php" >
+                       <span class="nav-text">Usuarios</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="asides.html" >
+                       <span class="nav-text">Consumos</span>
+                     </a>
+                   </li>
+                 </ul>
+               </li>
+               <li>
+                 <a>
+                   <span class="nav-caret">
+                     <i class="fa fa-caret-down"></i>
+                   </span>
+                   <span class="nav-icon">
+                     <i class="material-icons">&#xe8f0;
+                       <span ui-include="'assets/images/vending.svg'"></span>
+                     </i>
+                   </span>
+                   <span class="nav-text">Maquinas</span>
+                 </a>
+                 <ul class="nav-sub">
+                   <li>
+                     <a href="machine.php" >
+                       <span class="nav-text">Nueva</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="ConfigVM.php"  >
+                       <span class="nav-text">Configuracion</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="devices.php" >
+                       <span class="nav-text">Modulos</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="Plantas.php" >
+                       <span class="nav-text">Planta</span>
+                     </a>
+                   </li>
+                 </ul>
+               </li>
+               <li>
+                 <a href="cerrar.php" >
+                   <span class="nav-icon">
+                     <i class="material-icons">&#xe8f0;
+                       <span ui-include="'assets/images/logout.svg'"></span>
+                     </i>
+                   </span>
+                   <span class="nav-text">Salir</span>
+                 </a>
+               </li>
+             </ul>
+           </nav>
+         </div>
+         <div class="b-t">
+           <div class="nav-fold">
+               <span class="block">macielresendis@gmail.com</span>
+             <a href="#">
+               <span class="pull-left">
+                 <img src="assets/images/a0.jpg" alt="..." class="w-40 img-circle">
+               </span>
+               <span class="clear hidden-folded p-x">
+
+                 <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>online</small>
+               </span>
+             </a>
+           </div>
+         </div>
+       </div>
+     </div>
+     <!-- / -->
+
+     <!-- content -->
+     <div id="content" class="app-content box-shadow-z0" role="main">
+       <div class="app-header white box-shadow">
+         <div class="navbar navbar-toggleable-sm flex-row align-items-center">
+           <!-- Open side - Naviation on mobile -->
+           <a data-toggle="modal" data-target="#aside" class="hidden-lg-up mr-3">
+             <i class="material-icons">&#xe5d2;</i>
+           </a>
+           <!-- / -->
+
+           <!-- Page title - Bind to $state's title -->
+           <div class="mb-0 h5 no-wrap" ng-bind="$state.current.data.title" id="pageTitle"></div>
+
+           <!-- navbar collapse -->
+           <div class="collapse navbar-collapse" id="collapse">
+             <!-- link and dropdown -->
+             <ul class="nav navbar-nav mr-auto">
+               <li class="nav-item dropdown">
+                 <a class="nav-link" href data-toggle="dropdown">
+                   <i class="fa fa-fw fa-plus text-muted"></i>
+                   <span>New</span>
+                 </a>
+                 <div ui-include="'views/blocks/dropdown.new.html'"></div>
+               </li>
+             </ul>
+
+             <!-- / -->
+           </div>
+           <!-- / navbar collapse -->
+
+           <!-- BARRA DE LA DERECHA -->
+           <ul class="nav navbar-nav ml-auto flex-row">
+             <li class="nav-item dropdown pos-stc-xs">
+               <a class="nav-link mr-2" href data-toggle="dropdown">
+                 <i class="material-icons">&#xe7f5;</i>
+                 <span class="label label-sm up warn">9</span>
+               </a>
+               <div ui-include="'views/blocks/dropdown.notification.html'"></div>
+             </li>
+             <li class="nav-item dropdown">
+               <a class="nav-link p-0 clear" href="#" data-toggle="dropdown">
+                 <span class="avatar w-32">
+                   <img src="assets/images/a0.jpg" alt="...">
+                   <i class="on b-white bottom"></i>
+                 </span>
+               </a>
+               <div ui-include="'views/blocks/dropdown.user.html'"></div>
+             </li>
+             <li class="nav-item hidden-md-up">
+               <a class="nav-link pl-2" data-toggle="collapse" data-target="#collapse">
+                 <i class="material-icons">&#xe5d4;</i>
+               </a>
+             </li>
+           </ul>
+           <!-- / navbar right -->
+         </div>
+       </div>
+
+
+       <!-- PIE DE PAGINA -->
+       <div class="app-footer">
+         <div class="p-2 text-xs">
+           <div class="pull-right text-muted py-1">
+             &copy; Copyright <strong>SW500</strong> <span class="hidden-xs-down">- v1.0</span>
+             <a ui-scroll-to="content"><i class="fa fa-long-arrow-up p-x-sm"></i></a>
+           </div>
+
+         </div>
+       </div>
+
+       <div ui-view class="app-body" id="view">
+
+           <div id="cont0">
+
+<!--contenedor de salida-->
+<div id="cont1" >
+<!-- Cada elemento está dentro de un contenedor, (div o span), lo cual permitirá
+     recuperarlo en su sitio después de ser arrastrado.-->
+<div draggable="true" ondragstart="evdragstart(event,this)"><p  id="e1">Elemento arrastrable</p></div>
+<div draggable="true" ondragstart="evdragstart(event,this)"><p  id="e2">Google:
+     <a href="http://google.es" target="_blank">ir a Google</a>
+	</p></div>
+<div><ul draggable="true" ondragstart="evdragstart(event,this)" id="e3">
+     <li>Primer elemento</li>
+     <li>Segundo elemento</li>
+	</ul></div>
+<span><img src="../../objetos/espana.gif" alt="españa"
+     draggable="true" ondragstart="evdragstart(event,this)" id="e4"/></span>
+<span><img src="../../objetos/europa.gif" alt="europa"
+     draggable="true" ondragstart="evdragstart(event,this)" id="e5"/></span>
+<span><img src="../../objetos/italia.gif" alt="italia"
+     draggable="true" ondragstart="evdragstart(event,this)" id="e6"/></span>
+</div>
+
+<!--receptor de soltado -->
+<div id="cont2" ondragover="evdragover(event)" ondrop="evdrop(event,this)">
+</div>
+<div id="cont3" ondragover="evdragover(event)" ondrop="evdrop(event,this)">
+</div>
+
+</div>
+         <!-- SECCION CENTRAL -->
+         <div class="padding" style="text-aling:center;">
+
+     <div class="row">
+       <div class="responsive">
+         <form ui-jp="parsley" method="post" action="RegistrarPlanta.php">
+           <div class="box">
+             <div class="box-header">
+               <h2>Configuracion de Maquina</h2>
+             </div>
+             <div class="box-body">
+               <table class="table m-b-none" ui-jp="footable">
+                 <!-- CAPACIDAD -->
+                 <tr>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                       <span class="t">Capacidad
+                       </span>
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                   <td class="capacidad">
+                     <center>
+                       <b>
+                         30
+                       </b>
+                     </center>
+                   </td>
+                     <td class="capacidad">
+                       <center>
+                         <b>
+                           30
+                         </b>
+                       </center>
+                     </td>
+                   </tr>
+
+
+                                              <div id="1">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 1                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="10">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="11">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="12">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="13">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="14">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="15">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="16">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="17">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="18">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="19">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+                                        <div id="2">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 2                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="20">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="21">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="22">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="23">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="24">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="25">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="26">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="27">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="28">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="29">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+                                        <div id="3">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 3                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="30">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="31">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="32">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="33">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="34">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="35">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="36">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="37">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="38">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="39">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+                                        <div id="4">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 4                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="40">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="41">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="42">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="43">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="44">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="45">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="46">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="47">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="48">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="49">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+                                        <div id="5">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 5                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="50">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="51">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="52">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="53">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="54">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="55">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="56">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="57">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="58">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="59">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+                                        <div id="6">
+                       <tr>
+                         <th bgcolor="#CDCDCF" style="font-size:11px;">
+                           CHAROLA 6                         </th>
+
+                                              <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+
+
+                                        <td>
+                         <center>
+                               <div class="dp">
+                                 <div   class="s">
+                                     <div class="l">
+                                   <center>
+                                    <img  class="responsive" src="assets/images/proteger.png">
+                                  </center>
+                                 </div>
+                                     <div class="r responsive">
+                                       <span class="T responsive" style="font-size:9px;">
+                                             T9 GUANTE TEJIDO DURASTEEL POLY/COTTON MOD. HP 20
+                                       </span><br>
+                                       <div style="display:block;font-size:9px;font-weight: bold;">
+                                            Min&nbsp;
+                                            <input style="width:35px;"  value="3" size="1" type="number"> <br>
+                                              Max&nbsp;
+                                           <input  style="width:35px;"  value="15" size="1" type="number" ><br>
+                                     </div>
+                                 </div>
+                               </div>
+
+                         </center>
+                       </td>
+
+
+                                                  </tr>
+                       <tr>
+                       <td class="charola">
+                         <center>
+                           <b>
+                             <span class="t">Selección
+                             </span>
+                           </b>
+                         </center>
+                       </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="60">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="61">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="62">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="63">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="64">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="65">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="66">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="67">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="68">
+                 </b>
+               </center>
+             </td> <td class="charola">
+               <center>
+                 <b>
+                   <input type=text size = "2" readonly="false" value="69">
+                 </b>
+               </center>
+             </td> </tr>                     </div>
+
+
+
+                </table>
+<div id="campoBusq">
+
+</div>
+             </div>
+
+           </div>
+         </form>
+
+       </div>
+
+     </div>
+
+
+   </div>
+         <!-- ############ PAGE END-->
+
+       </div>
+
+     </div>
+     <!-- / -->
+
+     <!-- SELECTOR DE TEMAS -->
+     <div id="switcher">
+       <div class="switcher box-color dark-white text-color" id="sw-theme">
+         <a href ui-toggle-class="active" target="#sw-theme" class="box-color dark-white text-color sw-btn">
+           <i class="fa fa-gear"></i>
+         </a>
+         <div class="box-header">
+           <h2>Seleccionar de Articulos</h2>
+         </div>
+         <div class="box-divider"></div>
+         <div class="box-body">
+         <!--   <p class="hidden-md-down">
+            <label class="md-check m-y-xs"  data-target="folded">
+               <input type="checkbox">
+               <i class="green"></i>
+               <span class="hidden-folded">Folded Aside</span>
+             </label>
+             <label class="md-check m-y-xs" data-target="boxed">
+               <input type="checkbox">
+               <i class="green"></i>
+               <span class="hidden-folded">Boxed Layout</span>
+             </label>
+
+           </p>-->
+           <p>Articulos disponibles:</p>
+           <div id="Articulos" data-target="bg" class="row no-gutter clearfix" style="height:200px; overflow: scroll;">
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="1"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Guante de Carnaza</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="1">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Guante de Carnaza                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="2"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Tapones Auditivos</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="2">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Tapones Auditivos                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="3"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Lente de seguridad</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="3">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Lente de seguridad                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="4"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Faja chica</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="4">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Faja chica                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="5"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Faja Mediana</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="5">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Faja Mediana                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="6"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Faja Grande</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="6">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Faja Grande                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="7"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Guante Nitrilo</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="7">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Guante Nitrilo                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="8"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">0 - Guante Japones</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="8">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           0 - Guante Japones                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="9"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEC3-001
+ - CARTUCHO PARA VAPORES ORGANICOS MOD. 6001  70070316776 3M</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="9">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEC3-001
+ - CARTUCHO PARA VAPORES ORGANICOS MOD. 6001  70070316776 3M                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="10"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEC3-012
+ - CARTUCHO P/VAPORES ORGANICOS P/SERIE 7000 MOD. 7100 MOLDEX</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="10">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEC3-012
+ - CARTUCHO P/VAPORES ORGANICOS P/SERIE 7000 MOD. 7100 MOLDEX                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="11"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGE3-007 G3
+ - GUANTE DE HULE NEGRO MOD. 56-450 DERMA CARE  T/G 8</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="11">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGE3-007 G3
+ - GUANTE DE HULE NEGRO MOD. 56-450 DERMA CARE  T/G 8                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="12"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEC4-031
+ - ADAPTADOR PIGGYBACK PARA FILTRO/DISCO (PAQ. 2 PZAS) 7920 MOLDEX</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="12">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEC4-031
+ - ADAPTADOR PIGGYBACK PARA FILTRO/DISCO (PAQ. 2 PZAS) 7920 MOLDEX                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="13"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEC1-015
+ - MASCARILLA DES. PARTICULAS/ GASES ORG/ OZONO MOD. 2800N95 MOLDEX</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="13">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEC1-015
+ - MASCARILLA DES. PARTICULAS/ GASES ORG/ OZONO MOD. 2800N95 MOLDEX                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="14"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGD2-002
+ - GUANTE DE CARNAZA LARGO ECONOMICO  </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="14">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGD2-002
+ - GUANTE DE CARNAZA LARGO ECONOMICO                       </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="15"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGA6-045 G5
+ - GUANTE 100% FIBRA TAEKIS C/PARCHE CARNAZA MOD.SF-T601 SAFE FIT  T/G 10</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="15">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGA6-045 G5
+ - GUANTE 100% FIBRA TAEKIS C/PARCHE CARNAZA MOD.SF-T601 SAFE FIT  T/G 10                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="16"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGA1-009 C12
+ - GUANTE TEJIDO ALGODON 70 GRS MOD. A-2005 GISA  C AZUL </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="16">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGA1-009 C12
+ - GUANTE TEJIDO ALGODON 70 GRS MOD. A-2005 GISA  C AZUL                      </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="17"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGB2-003
+ - GUANTE DE LONA ALGODON TRES PALMAS PU�O TEJIDO MOD. LI-3 GISA</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="17">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGB2-003
+ - GUANTE DE LONA ALGODON TRES PALMAS PU�O TEJIDO MOD. LI-3 GISA                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="18"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEF3-014 D3
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A L</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="18">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEF3-014 D3
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A L                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="19"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEF3-014 D5
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A XL</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="19">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEF3-014 D5
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A XL                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="20"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEF3-014 D1
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A S</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="20">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEF3-014 D1
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A S                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="21"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEF3-014 D2
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A M</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="21">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEF3-014 D2
+ - FAJA CON SOPORTE SACROLUMBAR E C/CINTURON MOD. JYR-826-3C JYRSA  T/A M                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="22"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-023 G10
+ - GUANTE DE ALGODON REC. DE NITRILO PU�O LONA MOD. NI-3 GISA  T/G L </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="22">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-023 G10
+ - GUANTE DE ALGODON REC. DE NITRILO PU�O LONA MOD. NI-3 GISA  T/G L                      </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="23"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-009 G4
+ - GUANTE INSULADO REC. NITRILO PU�O 14" CRUSADER FLEX MOD. 42-474 ANSELL  T/G 9</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="23">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-009 G4
+ - GUANTE INSULADO REC. NITRILO PU�O 14" CRUSADER FLEX MOD. 42-474 ANSELL  T/G 9                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="24"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-007 G3
+ - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 8</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="24">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-007 G3
+ - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 8                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="25"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEC1-011
+ - MASCARILLA DES. P/PARTICULAS MOD. 2200N95 MOLDEX  </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="25">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEC1-011
+ - MASCARILLA DES. P/PARTICULAS MOD. 2200N95 MOLDEX                       </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="26"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-037 G1
+ - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 6</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="26">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-037 G1
+ - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 6                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="27"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-037 G2 - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 7</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="27">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-037 G2 - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 7                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="28"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-037 G3 - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 8</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="28">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-037 G3 - GUANTE DE NYLON REC. DE NITRILO EN PALMA Y DORSO MOD. 1400 SAFE FIT  T/G 8                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="29"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SPD3-006 D3 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A L</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="29">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SPD3-006 D3 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A L                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="30"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-078 G4 - GUANTE DE ALGODON REC. DE NITRILO PU�O TEJIDO MOD. 400FC SAFE FIT  T/G 9</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="30">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-078 G4 - GUANTE DE ALGODON REC. DE NITRILO PU�O TEJIDO MOD. 400FC SAFE FIT  T/G 9                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="31"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SPD3-006 D5 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A XL</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="31">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SPD3-006 D5 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A XL                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="32"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-007 G1 - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 6</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="32">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-007 G1 - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 6                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="33"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEB2-023  - TAPON AUDITIVO REUSABLE C/CORDON M/MULTICURVO NNR 27DB MOD. 6445 MOLDEX</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="33">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEB2-023  - TAPON AUDITIVO REUSABLE C/CORDON M/MULTICURVO NNR 27DB MOD. 6445 MOLDEX                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="34"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-007 G2 - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 7</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="34">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-007 G2 - GUANTE TEJIDO ALG., REC. ESPUMA NITRILO HYFLEX FOAM MOD. 11-800 ANSELL  T/G 7                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="35"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGD1-002  - GUANTE DE CARNAZA CORTO ECONOMICO  </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="35">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGD1-002  - GUANTE DE CARNAZA CORTO ECONOMICO                       </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="36"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SEA1-185  - LENTE POLIC. MICA CLARA, ANTIEMPA�O MOD.90960-AF URVINA</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="36">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SEA1-185  - LENTE POLIC. MICA CLARA, ANTIEMPA�O MOD.90960-AF URVINA                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="37"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGG2-083 G4 - GUANTE PU PALMA REF NITRILO AVNGR4 HI-VIZ NEG NEW ERA GLOVES  T/G 9</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="37">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGG2-083 G4 - GUANTE PU PALMA REF NITRILO AVNGR4 HI-VIZ NEG NEW ERA GLOVES  T/G 9                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="38"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SGC1-004  - GUANTE DE PIEL OSCARIA TIPO ARGONERO  </div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="38">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SGC1-004  - GUANTE DE PIEL OSCARIA TIPO ARGONERO                       </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+
+
+              <!-- <div class="arts" style="div:hover { cursor: pointer; } " iden="39"><img  class="responsive" style="width:20%;" src="assets/images/proteger.png">SPD3-006 D6 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A 2XL</div><br>
+              -->
+              <ul draggable="true" ondragstart="evdragstart(event,this)" id="39">
+                <li>
+               <div   class="s arts" style="div:hover { cursor: pointer; } " >
+                   <div class="l">
+                 <center>
+                  <img  class="responsive" src="assets/images/proteger.png">
+                </center>
+               </div>
+                   <div class="r responsive">
+                     <span class="T responsive" style="font-size:9px;">
+                           SPD3-006 D6 - OVEROL DESECHABLE C/CAPUCHA, ELAST PU/TOB TYVEK MOD. TY127S DUPONT  T/A 2XL                     </span><br>
+
+               </div>
+             </div>
+           </li>
+         </ul>
+                        </div>
+         </div>
+       </div>
+
+ </div>
+ </div>
+ </div>
+ </div>
+ <!-- / -->
+
+ <!-- ############ LAYOUT END-->
+
+ </div>
+ <!-- build:js scripts/app.html.js -->
+ <!-- jQuery -->
+ <script src="libs/jquery/jquery/dist/jquery.js"></script>
+ <!-- Bootstrap -->
+ <script src="libs/jquery/tether/dist/js/tether.min.js"></script>
+ <script src="libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+ <!-- core -->
+ <script src="libs/jquery/underscore/underscore-min.js"></script>
+ <script src="libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+ <script src="libs/jquery/PACE/pace.min.js"></script>
+
+ <script src="scripts/config.lazyload.js"></script>
+
+ <script src="scripts/palette.js"></script>
+ <script src="scripts/ui-load.js"></script>
+ <script src="scripts/ui-jp.js"></script>
+ <script src="scripts/ui-include.js"></script>
+ <script src="scripts/ui-device.js"></script>
+ <script src="scripts/ui-form.js"></script>
+ <script src="scripts/ui-nav.js"></script>
+ <script src="scripts/ui-screenfull.js"></script>
+ <script src="scripts/ui-scroll-to.js"></script>
+ <script src="scripts/ui-toggle-class.js"></script>
+
+ <script src="scripts/app.js"></script>
+
+ <!-- ajax -->
+ <script src="libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+ <script src="scripts/ajax.js"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/mqtt@4.2.1/dist/mqtt.min.js"></script>
+
+
+
+
+
+ <!-- endbuild -->
+ </body>
+ </html>

@@ -1,0 +1,1071 @@
+﻿/*! HTML5 Boilerplate v7.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/* main.css 1.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html {
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+head {
+    margin: 0;
+}
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contenedor {
+    width: 98%;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width:480px) {
+    .contenedor {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width:768px) {
+    .contenedor {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .contenedor {
+        width: 90%;
+        max-width: 1100px;
+    }
+}
+
+.seccion {
+    padding: 30px 0;
+}
+
+    .seccion p {
+        font-size: 1.2em;
+        text-align: justify;
+    }
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.4em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+    h2::after {
+        content: '';
+        margin: 0 auto;
+        background-image: url(../img/separador.png);
+        width: 100px;
+        height: 30px;
+        display: block;
+    }
+
+h3 {
+    font-size: 1.8em;
+    color: #fe4918;
+    font-family: 'PT Sans', sans-serif;
+    margin: 0;
+}
+/** Header **/
+div.hero {
+    background-image: url(../img/encabezado.jpg);
+    background-size: 20px;
+    height: 25vh;
+    background-position: center center;
+    background-size: cover;
+}
+
+@media only screen and (min-width:768px) {
+    div.hero {
+        background-image: url(../img/encabezado.jpg);
+        height: 50vh;
+        background-position: center center;
+        background-size: cover;
+    }
+}
+
+div.contenido-header {
+    padding-top: 40px;
+}
+
+@media only screen and (min-width:786px) {
+    div.contenido-header {
+        padding-top: 10px;
+    }
+}
+
+nav.redes-sociales {
+    text-align: center;
+}
+
+    nav.redes-sociales a {
+        color: white;
+        font-size: 2em;
+        margin-right: 20px;
+    }
+
+        nav.redes-sociales a:last-child {
+            margin-right: 0px;
+        }
+
+div.informacion-evento {
+    text-align: center;
+    color: white;
+}
+
+@media only screen and (min-width:786px) {
+    div.informacion-evento {
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+}
+
+div.informacion-evento p {
+    margin: 0;
+    display: inline;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+    div.informacion-evento p i {
+        color: #fe4918;
+        font-size: 2.4rem;
+    }
+
+p.fecha {
+    float: left;
+}
+
+p.ciudad {
+    float: right;
+    text-align: right;
+}
+
+p.slogan {
+    text-transform: none !important;
+}
+
+    p.slogan span {
+        font-weight: bold;
+    }
+
+h1.nombre-sitio {
+    font-size: 5.9vw;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+
+@media only screen and (min-width:786px) {
+    h1.nombre-sitio {
+        font-size: 11.5vw;
+        margin: 0;
+        line-height: 1;
+    }
+}
+
+/** barra**/
+div.barra {
+    background-color: #353535;
+    padding: 0;
+}
+
+div.logo {
+    width: 50%;
+    margin-top: 15px;
+}
+
+    div.logo img {
+        width: 50%;
+        float: left;
+    }
+
+@media only screen and (min-width:768px) {
+    div.logo img {
+        width: 33%;
+    }
+}
+/** Navegacion Principal **/
+/*nav.navegacion-principal{
+    display: none;
+}*/
+nav.navegacion-principal a {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 1.3em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .6s ease;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+nav.navegacion-principal ul {
+    text-align: left;
+    font-size: 14px;
+    background-color: #353535;
+}
+
+    nav.navegacion-principal ul li a:focus {
+        color: grey;
+    }
+
+
+
+
+
+nav.navegacion-principal a:hover {
+    background-color: #fe4918;
+    color: #fe4918;
+}
+
+nav.navegacion-principal a:last-child {
+    /*border: 2px solid #fe4918;*/
+    color: #fe4918;
+}
+
+nav.navegacion-principal a:hover {
+    color: white;
+}
+
+@media only screen and (min-width:768px) {
+    nav.navegacion-principal {
+        width: 67%;
+        float: right;
+        text-align: right;
+        display: block;
+    }
+
+        nav.navegacion-principal a {
+            padding: 10px 10px;
+            width: auto;
+            display: inline-block;
+            text-align: center;
+            margin: 0 10px 0 0;
+        }
+}
+/** Menu Movil**/
+div.menu-movil {
+    width: 60px;
+    display: block;
+    float: right;
+    text-align: right;
+    margin-top: 12px;
+}
+
+    div.menu-movil:hover {
+        cursor: pointer;
+    }
+
+@media only screen and (min-width:768px) {
+    div.menu-movil {
+        display: none;
+    }
+}
+
+div.menu-movil span {
+    height: 8px;
+    margin-bottom: 6px;
+    background-color: white;
+    display: block;
+}
+
+/** Talleres**/
+section.programa {
+    position: relative;
+}
+
+div.contenedor-video {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+div.contenido-programa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div.programa-evento {
+    background-color: rgba(255,255,255, .8);
+    padding: 15px;
+    margin-top: 70px;
+}
+
+@media only screen and (min-width:768px) {
+    div.programa-evento {
+        width: 50%;
+    }
+}
+
+nav.menu-programa {
+    width: 100%;
+    border-bottom: 1px solid #fe4918;
+}
+
+@media only screen and (min-width:768px) {
+    nav.menu-programa {
+        display: table;
+    }
+}
+
+nav.menu-programa a {
+    display: block;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+@media only screen and (min-width:768px) {
+    nav.menu-programa a {
+        display: table-cell;
+    }
+}
+
+nav.menu-programa a i,
+div.detalle-evento p i {
+    color: #fe4918;
+    font-size: 1.3em;
+    margin-right: 10px;
+}
+/**Detalle evento**/
+div.detalle-evento {
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+    padding: 0px 20px;
+}
+
+    div.detalle-evento:nth-child(2) {
+        border: none
+    }
+
+    div.detalle-evento p {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+.button {
+    background-color: #fe4918;
+    padding: 10px 40px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    font-size: 1em;
+    margin-top: 20px;
+    display: inline-block;
+    transition: all .3s ease;
+}
+
+    .button:hover {
+        background-color: #e33000;
+    }
+
+.float-right {
+    float: right;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+    /* invitados */
+    ul.lista-invitados li {
+        padding: 5px;
+        float: left;
+    }
+
+@media only screen and (min-width:480px) {
+    ul.lista-invitados li {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width:768px) {
+    ul.lista-invitados li {
+        width: 20%;
+    }
+}
+
+div.invitado {
+    position: relative;
+    overflow: hidden;
+}
+
+    div.invitado img {
+        max-width: 90%;
+        filter: gray;
+        -webkit-filter: grayscale(1);
+        -webkit-transition: all .5s ease-in-out;
+    }
+
+    div.invitado:hover img {
+        -webkit-filter: grayscale(0);
+        -webkit-transform: scale(1.1);
+    }
+
+    div.invitado p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 15px 10px;
+        margin: 0;
+        background-color: rgb(15, 25, 52, 0.90);
+        width: 90%;
+        text-align: left;
+        font-family: 'Oswald', sans-serif;
+        color: white;
+        text-transform: uppercase;
+        font-size: 10px;
+        transition: all .3s ease-in-out;
+    }
+
+    div.invitado:hover p {
+        bottom: -80px;
+        opacity: 0;
+    }
+/*Contador*/
+.parallax::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+div.contador {
+    position: relative;
+    height: auto;
+}
+
+    div.contador::before {
+        background-image: url(../img/bg-resumen.jpg);
+        content: '';
+    }
+
+ul.resumen-evento {
+    position: relative;
+    padding: 120px 0;
+}
+
+    ul.resumen-evento li {
+        width: 50%;
+        float: left;
+        text-align: center;
+    }
+
+@media only screen and (min-width:768px) {
+    ul.resumen-evento li {
+        width: 25%;
+    }
+}
+
+p.numero {
+    color: #fe4918;
+    display: block;
+}
+
+.forma {
+    margin-top: 0;
+}
+
+.pie {
+    background-color: #353535;
+    width: 100%;
+    height: 100%;
+    color: white;
+    position: static;
+    align-items: center;
+    text-align: center;
+}
+
+    .pie h4 {
+        font-size: 1rem;
+        font: bold;
+        font-family: 'PT Sans', sans-serif;
+    }
+
+
+
+.doscol, .trescol {
+    padding: 10px;
+    float: left;
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+.trescol {
+    padding: 10px;
+    float: left;
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+@media only screen and (min-width:768px) {
+    .doscol {
+        padding: 10px;
+        float: left;
+        width: 40%;
+    }
+
+    .trescol {
+        padding: 10px;
+        float: left;
+        width: 60%;
+        height: 100%;
+    }
+}
+
+.Hardware {
+    /* margin-top: 10px;
+  width: 60%;
+    font-size: 26px;*/
+    margin-left: 4.5%;
+    margin-right: 13%;
+    text-align: center;
+    border: 1px solid #000;
+    display: block;
+    margin-bottom: 10px;
+}
+
+    .Hardware TextBox {
+        height: 10px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+.opciones {
+    text-align: left !important;
+    margin-left: 10px;
+}
+
+    .opciones p {
+        margin: 0;
+        margin-left: 5px;
+        font-size: 12px;
+        padding: 0px;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+    .dropdown-submenu:hover > a:after {
+        border-left-color: #fff;
+    }
+
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+
+
+.fondo {
+    background-image: url(../img/fondo.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (min-width:768px) {
+    .fondo {
+        background: url(../img/fondo.jpg) no-repeat fixed center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 0 solid rgba(0,0,0,.125)
+}
+
+.card-comments {
+    background: #f7f7f7
+}
+
+    .card-comments .card-comment {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee
+    }
+
+        .card-comments .card-comment::after {
+            display: block;
+            clear: both;
+            content: ""
+        }
+
+        .card-comments .card-comment:last-of-type {
+            border-bottom: 0
+        }
+
+        .card-comments .card-comment:first-of-type {
+            padding-top: 0
+        }
+
+        .card-comments .card-comment img {
+            float: left
+        }
+
+    .card-comments .comment-text {
+        margin-left: 40px;
+        color: #555
+    }
+
+    .card-comments .username {
+        color: #444;
+        display: block;
+        font-weight: 600
+    }
+
+    .card-comments .text-muted {
+        font-weight: 400;
+        font-size: 12px
+    }
+
+    .card-comments .card-comment img, .img-lg, .img-md, .img-sm, .user-block.user-block-sm img {
+        float: left
+    }
+
+    .card-comments .card-comment img, .img-sm, .user-block.user-block-sm img {
+        width: 30px !important;
+        height: 30px !important
+    }
+
+        .card-comments .card-comment img + .img-push, .img-sm + .img-push, .user-block.user-block-sm img + .img-push {
+            margin-left: 40px
+        }
+
+.img-circle {
+    border-radius: 50%
+}
+
+
+.opacidad {
+    background: rgba(255,255,255, .5);
+    /*opacity: 0.6; /* Opacidad 60% */
+    width: 88%;
+    margin: 0 auto;
+}
+
+.opacidad60 {
+    background: rgba(255,255,255, .6);
+    /*opacity: 0.6; /* Opacidad 60% */
+    width: 88%;
+    margin: 0 auto;
+}
+
+.opacidad80 {
+    background: rgba(255,255,255, .8);
+}
+
+/*.opciones TextBox {
+    height:5px;
+}*/
+/* Valoracion por estrellas*/
+/*.star-rating {
+    font-size: 0;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 25px;
+    width: 125px;
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+    background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+    background-size: contain;
+}
+
+    .star-rating i {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 20%;
+        z-index: 1;
+        background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+        background-size: contain;
+    }
+
+    .star-rating input {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        opacity: 0;
+        display: inline-block;
+        width: 20%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 2;
+        position: relative;
+    }
+
+        .star-rating input:hover + i,
+        .star-rating input:checked + i {
+            opacity: 1;
+        }
+
+    .star-rating i ~ i {
+        width: 40%;
+    }
+
+        .star-rating i ~ i ~ i {
+            width: 60%;
+        }
+
+            .star-rating i ~ i ~ i ~ i {
+                width: 80%;
+            }
+
+                .star-rating i ~ i ~ i ~ i ~ i {
+                    width: 100%;
+                }
+
+.msj {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+
+*,
+::after,
+::before {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+}*/
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Hide visually and from screen readers
+ */
+.hidden {
+    display: none !important;
+}
+
+/*
+* Hide only visually, but have it available for screen readers:
+* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+*
+* 1. For long content, line feeds are not interpreted as spaces and small width
+*    causes content to wrap 1 word per line:
+*    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+*/
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+    /*
+* Extends the .visuallyhidden class to allow the element
+* to be focusable when navigated to via the keyboard:
+* https://www.drupal.org/node/897638
+*/
+
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+        white-space: inherit;
+    }
+
+/*
+* Hide visually and from screen readers, but maintain layout
+*/
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+* Clearfix: contain floats
+*
+* For modern browsers
+* 1. The space content is one way to avoid an Opera bug when the
+*    `contenteditable` attribute is included anywhere else in the document.
+*    Otherwise it causes space to appear at the top and bottom of elements
+*    that receive the `clearfix` class.
+* 2. The use of `table` rather than `block` is only necessary if using
+*    `:before` to contain the top-margins of child elements.
+*/
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster */
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+        a[href]:after {
+            content: " (" attr(href) ")";
+        }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
